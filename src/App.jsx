@@ -363,7 +363,7 @@ function App() {
       </main>
 
       <footer className="footer">
-        <p>Act © {new Date().getFullYear()}</p>
+        <p>Act Studios © {new Date().getFullYear()}</p>
       </footer>
     </div>
   )
