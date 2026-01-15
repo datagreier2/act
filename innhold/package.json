@@ -1,0 +1,20 @@
+{
+  "name": "act-innhold",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "typegen": "sanity schema extract --path=./schema.json && sanity typegen generate"
+  },
+  "dependencies": {
+    "@sanity/vision": "^3.96.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-is": "^19.2.0",
+    "sanity": "^3.96.0",
+    "styled-components": "^6.3.6"
+  }
+}
