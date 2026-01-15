@@ -83,6 +83,17 @@ const fallbackPrices = [
 ]
 
 function App() {
+  const baseUrl = import.meta.env.BASE_URL
+  const withBase = (path) => {
+    if (!path) return path
+    if (/^(https?:)?\/\//.test(path) || path.startsWith('data:')) {
+      return path
+    }
+    if (path.startsWith('/')) {
+      return `${baseUrl}${path.slice(1)}`
+    }
+    return `${baseUrl}${path}`
+  }
   const [interest, setInterest] = useState('')
   const [isSelectOpen, setIsSelectOpen] = useState(false)
   const [homePage, setHomePage] = useState(null)
@@ -118,7 +129,8 @@ function App() {
     }
   }, [])
 
-  const heroImageUrl = homePage?.heroImage?.asset?.url || '/pexels-cottonbro-6896192.jpg'
+  const heroImageUrl =
+    homePage?.heroImage?.asset?.url || withBase('/pexels-cottonbro-6896192.jpg')
   const heroImageAlt =
     homePage?.heroImage?.alt || 'Instruktør som veileder foran to skuespillere'
   const workshops = homePage?.workshops?.length ? homePage.workshops : fallbackWorkshops
@@ -139,7 +151,7 @@ function App() {
     <div className="page">
       <header className="topbar">
         <div className="brand">
-          <img src="/Act.2.svg" alt="Act logo" className="brand-mark" />
+          <img src={withBase('/Act.2.svg')} alt="Act logo" className="brand-mark" />
         </div>
         <nav className="nav">
           <a href="#forside">
@@ -202,7 +214,7 @@ function App() {
             {workshops.map((item) => {
               const metaItems =
                 item.meta?.filter(Boolean) || [item.date, item.time, item.location].filter(Boolean)
-              const imageUrl = item.image?.asset?.url || item.image
+              const imageUrl = item.image?.asset?.url || withBase(item.image)
               const imageAlt = item.image?.alt || `${item.title} workshop`
 
               return (
@@ -243,7 +255,7 @@ function App() {
           </div>
           <div className="card-grid">
             {privateSessions.map((session) => {
-              const imageUrl = session.image?.asset?.url || session.image
+              const imageUrl = session.image?.asset?.url || withBase(session.image)
               const imageAlt = session.image?.alt || session.title
 
               return (
