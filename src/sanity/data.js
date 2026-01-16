@@ -34,7 +34,10 @@ export function getSiteSettings() {
 }
 
 export function getHomePage() {
-  const query = `*[_type == "homePage" && title == "Act Forside"][0]{
+  const homePageId =
+    import.meta.env.VITE_SANITY_HOME_PAGE_ID ||
+    '5db524c7-6851-4f28-a326-b1735de0fcdb'
+  const query = `*[_type == "homePage" && _id == $homePageId][0]{
     _id,
     title,
     header{
@@ -72,5 +75,5 @@ export function getHomePage() {
     }
   }`;
 
-  return sanityClient.fetch(query);
+  return sanityClient.fetch(query, { homePageId });
 }
