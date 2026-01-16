@@ -34,7 +34,7 @@ export function getSiteSettings() {
 }
 
 export function getHomePage() {
-  const query = `*[_type == "homePage"][0]{
+  const query = `*[_type == "homePage" && title == "Act Forside"][0]{
     _id,
     title,
     header{
