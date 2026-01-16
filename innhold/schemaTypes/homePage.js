@@ -1,89 +1,5 @@
 import { defineField, defineType } from 'sanity'
 
-export const workshop = defineType({
-  name: 'workshop',
-  title: 'Workshop',
-  type: 'object',
-  fields: [
-    defineField({ name: 'title', title: 'Title', type: 'string' }),
-    defineField({ name: 'date', title: 'Date', type: 'string' }),
-    defineField({ name: 'time', title: 'Time', type: 'string' }),
-    defineField({ name: 'location', title: 'Location', type: 'string' }),
-    defineField({
-      name: 'image',
-      title: 'Image',
-      type: 'image',
-      options: { hotspot: true },
-      fields: [
-        defineField({
-          name: 'alt',
-          title: 'Alt text',
-          type: 'string',
-          description: 'Short description for accessibility.',
-        }),
-      ],
-    }),
-    defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'text',
-      rows: 3,
-    }),
-    defineField({
-      name: 'bullets',
-      title: 'Bullet points',
-      type: 'array',
-      of: [{ type: 'string' }],
-    }),
-  ],
-})
-
-export const privateSession = defineType({
-  name: 'privateSession',
-  title: 'Privattime',
-  type: 'object',
-  fields: [
-    defineField({ name: 'title', title: 'Title', type: 'string' }),
-    defineField({
-      name: 'image',
-      title: 'Image',
-      type: 'image',
-      options: { hotspot: true },
-      fields: [
-        defineField({
-          name: 'alt',
-          title: 'Alt text',
-          type: 'string',
-          description: 'Short description for accessibility.',
-        }),
-      ],
-    }),
-    defineField({
-      name: 'summary',
-      title: 'Summary',
-      type: 'text',
-      rows: 3,
-    }),
-    defineField({
-      name: 'points',
-      title: 'Key points',
-      type: 'array',
-      of: [{ type: 'string' }],
-    }),
-  ],
-})
-
-export const priceItem = defineType({
-  name: 'priceItem',
-  title: 'Price item',
-  type: 'object',
-  fields: [
-    defineField({ name: 'title', title: 'Title', type: 'string' }),
-    defineField({ name: 'body', title: 'Body', type: 'text', rows: 3 }),
-    defineField({ name: 'price', title: 'Price', type: 'string' }),
-  ],
-})
-
 export const event = defineType({
   name: 'event',
   title: 'Event',
@@ -98,158 +14,195 @@ export const event = defineType({
     }),
     defineField({
       name: 'dateTime',
-      title: 'Date & time',
+      title: 'Dato og tidspunkt',
       type: 'datetime',
     }),
   ],
 })
 
-export const homePage = defineType({
-  name: 'homePage',
-  title: 'Home page',
-  type: 'document',
+export const header = defineType({
+  name: 'header',
+  title: 'Header',
+  type: 'object',
   fields: [
     defineField({
-      name: 'title',
-      title: 'Internal title',
-      type: 'string',
-      description: 'Only used inside Sanity Studio.',
-    }),
-    defineField({
       name: 'heroTitle',
-      title: 'Hero title',
+      title: 'Hero-tittel',
       type: 'string',
     }),
     defineField({
       name: 'heroLead',
-      title: 'Hero lead',
+      title: 'Hero-intro',
       type: 'text',
       rows: 3,
     }),
     defineField({
       name: 'heroLeadSecondary',
-      title: 'Hero secondary lead',
+      title: 'Hero-tillegg',
       type: 'text',
       rows: 3,
     }),
     defineField({
       name: 'heroImage',
-      title: 'Hero image',
+      title: 'Hero-bilde',
       type: 'image',
       options: { hotspot: true },
       fields: [
         defineField({
           name: 'alt',
-          title: 'Alt text',
+          title: 'Alt-tekst',
           type: 'string',
-          description: 'Short description for accessibility.',
         }),
       ],
     }),
     defineField({
       name: 'ctaPrimaryLabel',
-      title: 'Primary CTA label',
+      title: 'Primær CTA-tekst',
       type: 'string',
     }),
     defineField({
       name: 'ctaPrimaryHref',
-      title: 'Primary CTA link',
+      title: 'Primær CTA-lenke',
       type: 'string',
-      description: 'Use anchors like #workshops or full URLs.',
+      description: 'Bruk anker som #kalender eller full URL.',
     }),
     defineField({
       name: 'ctaSecondaryLabel',
-      title: 'Secondary CTA label',
+      title: 'Sekundær CTA-tekst',
       type: 'string',
     }),
     defineField({
       name: 'ctaSecondaryHref',
-      title: 'Secondary CTA link',
+      title: 'Sekundær CTA-lenke',
       type: 'string',
-      description: 'Use anchors like #interesse or full URLs.',
+      description: 'Bruk anker som #kontakt eller full URL.',
+    }),
+  ],
+})
+
+export const footer = defineType({
+  name: 'footer',
+  title: 'Footer',
+  type: 'object',
+  fields: [
+    defineField({
+      name: 'title',
+      title: 'Footer-tittel',
+      type: 'string',
     }),
     defineField({
-      name: 'workshopsTitle',
-      title: 'Workshops title',
-      type: 'string',
-    }),
-    defineField({
-      name: 'workshopsLead',
-      title: 'Workshops intro',
+      name: 'body',
+      title: 'Footer-tekst',
       type: 'text',
       rows: 3,
     }),
+  ],
+})
+
+export const sectionAktuelt = defineType({
+  name: 'sectionAktuelt',
+  title: 'Aktuelt',
+  type: 'object',
+  fields: [
+    defineField({ name: 'title', title: 'Tittel', type: 'string' }),
+    defineField({ name: 'body', title: 'Tekst', type: 'text', rows: 4 }),
+  ],
+})
+
+export const sectionKalender = defineType({
+  name: 'sectionKalender',
+  title: 'Kalender',
+  type: 'object',
+  fields: [
+    defineField({ name: 'title', title: 'Tittel', type: 'string' }),
     defineField({
-      name: 'workshopsNote',
-      title: 'Workshops note',
-      type: 'text',
-      rows: 2,
-    }),
-    defineField({
-      name: 'workshops',
-      title: 'Workshops',
+      name: 'events',
+      title: 'Arrangementer',
       type: 'array',
-      of: [{ type: 'workshop' }],
+      of: [{ type: 'reference', to: [{ type: 'event' }] }],
     }),
+  ],
+})
+
+export const sectionAnnet = defineType({
+  name: 'sectionAnnet',
+  title: 'Annet',
+  type: 'object',
+  fields: [
+    defineField({ name: 'title', title: 'Tittel', type: 'string' }),
+    defineField({ name: 'body', title: 'Tekst', type: 'text', rows: 4 }),
+  ],
+})
+
+export const sectionKjope = defineType({
+  name: 'sectionKjope',
+  title: 'Kjøpe',
+  type: 'object',
+  fields: [
+    defineField({ name: 'title', title: 'Tittel', type: 'string' }),
+    defineField({ name: 'body', title: 'Tekst', type: 'text', rows: 4 }),
+  ],
+})
+
+export const sectionKontakt = defineType({
+  name: 'sectionKontakt',
+  title: 'Kontakt',
+  type: 'object',
+  fields: [
+    defineField({ name: 'title', title: 'Tittel', type: 'string' }),
+    defineField({ name: 'body', title: 'Tekst', type: 'text', rows: 4 }),
+    defineField({ name: 'email', title: 'E-post', type: 'string' }),
+    defineField({ name: 'phone', title: 'Telefon', type: 'string' }),
+  ],
+})
+
+export const sectionOmOss = defineType({
+  name: 'sectionOmOss',
+  title: 'Om oss',
+  type: 'object',
+  fields: [
+    defineField({ name: 'title', title: 'Tittel', type: 'string' }),
+    defineField({ name: 'body', title: 'Tekst', type: 'text', rows: 4 }),
+  ],
+})
+
+export const homePage = defineType({
+  name: 'homePage',
+  title: 'Forside',
+  type: 'document',
+  fields: [
     defineField({
-      name: 'privateSessionsTitle',
-      title: 'Privattimer title',
+      name: 'title',
+      title: 'Intern tittel',
       type: 'string',
+      description: 'Kun brukt i Studio.',
     }),
     defineField({
-      name: 'privateSessionsLead',
-      title: 'Privattimer intro',
-      type: 'text',
-      rows: 3,
+      name: 'header',
+      title: 'Header',
+      type: 'header',
     }),
     defineField({
-      name: 'privateSessions',
-      title: 'Privattimer',
+      name: 'sections',
+      title: 'Innhold (flyttbart)',
+      description: 'Legg til seksjoner og dra for å endre rekkefølge.',
       type: 'array',
-      of: [{ type: 'privateSession' }],
+      options: {
+        sortable: true,
+      },
+      of: [
+        { type: 'sectionAktuelt' },
+        { type: 'sectionKalender' },
+        { type: 'sectionAnnet' },
+        { type: 'sectionKjope' },
+        { type: 'sectionKontakt' },
+        { type: 'sectionOmOss' },
+      ],
     }),
     defineField({
-      name: 'pricesTitle',
-      title: 'Prices title',
-      type: 'string',
-    }),
-    defineField({
-      name: 'pricesLead',
-      title: 'Prices intro',
-      type: 'text',
-      rows: 3,
-    }),
-    defineField({
-      name: 'prices',
-      title: 'Prices',
-      type: 'array',
-      of: [{ type: 'priceItem' }],
-    }),
-    defineField({
-      name: 'contactTitle',
-      title: 'Contact title',
-      type: 'string',
-    }),
-    defineField({
-      name: 'contactLead',
-      title: 'Contact intro',
-      type: 'text',
-      rows: 3,
-    }),
-    defineField({
-      name: 'contactFormTitle',
-      title: 'Contact form title',
-      type: 'string',
-    }),
-    defineField({
-      name: 'contactEmail',
-      title: 'Contact email',
-      type: 'string',
-    }),
-    defineField({
-      name: 'contactPhone',
-      title: 'Contact phone',
-      type: 'string',
+      name: 'footer',
+      title: 'Footer',
+      type: 'footer',
     }),
   ],
 })

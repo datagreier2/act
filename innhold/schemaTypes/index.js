@@ -1,3 +1,25 @@
-import { event, homePage, priceItem, privateSession, workshop } from './homePage.js'
+import {
+  event,
+  footer,
+  header,
+  homePage,
+  sectionAktuelt,
+  sectionAnnet,
+  sectionKalender,
+  sectionKjope,
+  sectionKontakt,
+  sectionOmOss,
+} from './homePage.js'
 
-export const schemaTypes = [homePage, workshop, privateSession, priceItem, event]
+export const schemaTypes = [
+  homePage,
+  header,
+  footer,
+  sectionAktuelt,
+  sectionKalender,
+  sectionAnnet,
+  sectionKjope,
+  sectionKontakt,
+  sectionOmOss,
+  event,
+]

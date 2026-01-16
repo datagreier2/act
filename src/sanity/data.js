@@ -37,66 +37,39 @@ export function getHomePage() {
   const query = `*[_type == "homePage"][0]{
     _id,
     title,
-    heroTitle,
-    heroLead,
-    heroLeadSecondary,
-    heroImage{
-      alt,
-      asset->{
-        url
-      }
-    },
-    ctaPrimaryLabel,
-    ctaPrimaryHref,
-    ctaSecondaryLabel,
-    ctaSecondaryHref
-    ,
-    workshopsTitle,
-    workshopsLead,
-    workshopsNote,
-    workshops[]{
-      _key,
-      title,
-      date,
-      time,
-      location,
-      description,
-      bullets,
-      image{
+    header{
+      heroTitle,
+      heroLead,
+      heroLeadSecondary,
+      heroImage{
         alt,
         asset->{
           url
         }
       },
-      "meta": [date, time, location]
+      ctaPrimaryLabel,
+      ctaPrimaryHref,
+      ctaSecondaryLabel,
+      ctaSecondaryHref
     },
-    privateSessionsTitle,
-    privateSessionsLead,
-    privateSessions[]{
+    sections[]{
       _key,
-      title,
-      summary,
-      points,
-      image{
-        alt,
-        asset->{
-          url
-        }
-      }
-    },
-    pricesTitle,
-    pricesLead,
-    prices[]{
-      _key,
+      _type,
       title,
       body,
-      price
+      email,
+      phone,
+      events[]->{
+        _id,
+        title,
+        details,
+        dateTime
+      }
     },
-    contactTitle,
-    contactLead,
-    contactFormTitle,
-    contactEmail,
-    contactPhone
+    footer{
+      title,
+      body
+    }
   }`;
 
   return sanityClient.fetch(query);
