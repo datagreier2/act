@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import LaunchOverlay from './LaunchOverlay'
+import { getIsPreviewMode } from './previewMode'
 import { getKontaktPage } from './sanity/data'
 import './KontaktPage.css'
 
@@ -15,6 +17,7 @@ const fallbackPage = {
 }
 
 function KontaktPage() {
+  const isPreviewMode = getIsPreviewMode()
   const formsparkAction = 'https://submit-form.com/v1phnx4Ik'
   const [kontaktPage, setKontaktPage] = useState(null)
 
@@ -119,6 +122,7 @@ function KontaktPage() {
           </article>
         </section>
       </main>
+      {!isPreviewMode ? <LaunchOverlay /> : null}
     </div>
   )
 }

@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { getAktueltPage, getCalendarSection, getHomePage } from './sanity/data'
+import LaunchOverlay from './LaunchOverlay'
+import { getIsPreviewMode } from './previewMode'
 import './App.css'
 
 const sectionConfig = {
@@ -11,6 +13,7 @@ const sectionConfig = {
 }
 
 function App() {
+  const isPreviewMode = getIsPreviewMode()
   const formsparkAction = 'https://submit-form.com/v1phnx4Ik'
   const baseUrl = import.meta.env.BASE_URL
   const withBase = (path) => {
@@ -584,6 +587,7 @@ function App() {
         {footer.title ? <p>{footer.title}</p> : <p>Act © {new Date().getFullYear()}</p>}
         {footer.body ? <p className="muted">{footer.body}</p> : null}
       </footer>
+      {!isPreviewMode ? <LaunchOverlay /> : null}
     </div>
   )
 }

@@ -52,7 +52,7 @@ npm run deploy
 
 ## Deployment (GitHub Pages)
 
-- Push to `main` or `stage` triggers `.github/workflows/deploy.yml`
-- Public site uses `stage` and is deployed at site root (`/`)
-- Preview uses `main` and is deployed under `/preview/`
+- Push to `main` triggers `.github/workflows/deploy.yml`
+- Same `main` build is deployed at site root (`/`) and duplicated under `/preview/`
+- The site shows a "Kommer snart" overlay by default, while `/preview/` shows the real content
 - Vite uses `base: "./"` so asset paths work for both repo pages and custom-domain root hosting

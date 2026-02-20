@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import LaunchOverlay from './LaunchOverlay'
+import { getIsPreviewMode } from './previewMode'
 import { getOmOssPage } from './sanity/data'
 import './OmOssPage.css'
 
@@ -26,6 +28,7 @@ const fallbackPage = {
 }
 
 function OmOssPage() {
+  const isPreviewMode = getIsPreviewMode()
   const [omOssPage, setOmOssPage] = useState(null)
 
   useEffect(() => {
@@ -110,6 +113,7 @@ function OmOssPage() {
           })}
         </section>
       </main>
+      {!isPreviewMode ? <LaunchOverlay /> : null}
     </div>
   )
 }
