@@ -757,20 +757,35 @@
   .nav {
     display: none;
     grid-column: 1 / -1;
-    flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
-    gap: 8px;
+    column-count: 2;
+    column-gap: 10px;
     padding-top: 12px;
   }
 
   .nav.is-open {
-    display: flex;
+    display: block;
   }
 
   .nav a {
-    padding: 8px 10px;
+    display: block;
+    break-inside: avoid;
+    margin: 0 0 10px;
+    min-height: 44px;
+    padding: 10px 12px;
     border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    background: #fafafa;
+    font-weight: 600;
+  }
+
+  .nav a:nth-child(3n) {
+    min-height: 56px;
+  }
+
+  .nav a:nth-child(4n + 2) {
+    min-height: 50px;
   }
 
   .hero {
@@ -827,6 +842,12 @@
 
 @media (max-width: 560px) {
   .nav {
-    justify-content: flex-start;
+    column-count: 1;
+    column-gap: 0;
+  }
+
+  .nav a:nth-child(3n),
+  .nav a:nth-child(4n + 2) {
+    min-height: 44px;
   }
 }
