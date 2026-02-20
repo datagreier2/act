@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "stage"]
   workflow_dispatch:
 
 permissions:
@@ -18,23 +18,46 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout Production Branch
         uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main-site
+      - name: Checkout Preview Branch
+        uses: actions/checkout@v4
+        with:
+          ref: stage
+          path: stage-site
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: "npm"
-      - name: Install
-        run: npm ci
-      - name: Build
-        run: npm run build
+          cache-dependency-path: |
+            main-site/package-lock.json
+            stage-site/package-lock.json
+      - name: Install + Build Production (main)
+        working-directory: main-site
+        run: |
+          npm ci
+          npm run build
+      - name: Install + Build Preview (stage)
+        working-directory: stage-site
+        run: |
+          npm ci
+          npm run build
+      - name: Assemble Pages Artifact
+        run: |
+          rm -rf out
+          mkdir -p out/preview
+          rsync -a main-site/dist/ out/
+          rsync -a stage-site/dist/ out/preview/
       - name: Configure Pages
         uses: actions/configure-pages@v4
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: out
 
   deploy:
     needs: build

@@ -30,6 +30,10 @@ Defaults are in `.env.example`:
 - `VITE_SANITY_DATASET`
 - `VITE_SANITY_API_VERSION`
 - `VITE_SANITY_HOME_PAGE_ID`
+- `VITE_SANITY_AKTUELT_PAGE_ID`
+- `VITE_SANITY_OM_OSS_PAGE_ID`
+- `VITE_SANITY_KONTAKT_PAGE_ID`
+- `VITE_SANITY_CALENDAR_SECTION_ID`
 
 ## Sanity Studio (`innhold/`)
 
@@ -48,6 +52,7 @@ npm run deploy
 
 ## Deployment (GitHub Pages)
 
-- Push to `main` triggers `.github/workflows/deploy.yml`
-- Frontend output is deployed from `dist/`
+- Push to `main` or `stage` triggers `.github/workflows/deploy.yml`
+- Production uses `main` and is deployed at site root (`/`)
+- Preview uses `stage` and is deployed under `/preview/`
 - Vite uses `base: "./"` so asset paths work for both repo pages and custom-domain root hosting

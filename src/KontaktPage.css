@@ -1,0 +1,141 @@
+.kontakt-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 24px 96px;
+  display: grid;
+  gap: 48px;
+}
+
+.kontakt-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #18020c;
+  padding-bottom: 14px;
+  gap: 16px;
+}
+
+.kontakt-brand-mark {
+  height: 48px;
+  width: auto;
+}
+
+.kontakt-back-link {
+  border: 1px solid #18020c;
+  border-radius: 3px;
+  padding: 8px 12px;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.kontakt-content {
+  display: grid;
+  gap: 28px;
+}
+
+.kontakt-intro {
+  display: grid;
+  gap: 12px;
+  max-width: 760px;
+}
+
+.kontakt-intro h1 {
+  font-size: 40px;
+}
+
+.kontakt-intro p {
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.kontakt-intro-image {
+  margin: 6px 0 0;
+  border: 1px solid #e4e4e4;
+  border-radius: 6px;
+  overflow: hidden;
+  max-width: 640px;
+}
+
+.kontakt-intro-image img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+.kontakt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.kontakt-card {
+  border: 1px solid #e4e4e4;
+  border-radius: 3px;
+  background: #fafafa;
+  padding: 20px;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.kontakt-card h2 {
+  font-size: 28px;
+}
+
+.kontakt-card p {
+  margin: 0;
+}
+
+.kontakt-link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.kontakt-map-link {
+  justify-self: start;
+  margin-top: 6px;
+}
+
+.kontakt-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.kontakt-field {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.kontakt-field span {
+  font-weight: 600;
+}
+
+.kontakt-field input,
+.kontakt-field textarea {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #dcdcdc;
+  font: inherit;
+  background: #fafafa;
+}
+
+.kontakt-field textarea {
+  resize: vertical;
+}
+
+@media (max-width: 640px) {
+  .kontakt-page {
+    padding-top: 64px;
+  }
+
+  .kontakt-intro h1 {
+    font-size: 32px;
+  }
+
+  .kontakt-intro p {
+    font-size: 16px;
+  }
+}

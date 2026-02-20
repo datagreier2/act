@@ -80,10 +80,67 @@ export function getAktueltPage() {
     title,
     body,
     hide,
-    hideButton
+    hideButton,
+    buttonHref
   }`
 
   return sanityClient.fetch(query, { aktueltPageId })
+}
+
+export function getOmOssPage() {
+  const omOssPageId = import.meta.env.VITE_SANITY_OM_OSS_PAGE_ID || 'om-oss-page'
+  const query = `*[_type == "omOssPage" && _id == $omOssPageId][0]{
+    _id,
+    title,
+    heading,
+    body,
+    introImage{
+      alt,
+      asset->{
+        url
+      }
+    },
+    people[]{
+      _key,
+      name,
+      bio,
+      email,
+      phone,
+      image{
+        alt,
+        asset->{
+          url
+        }
+      }
+    }
+  }`
+
+  return sanityClient.fetch(query, { omOssPageId })
+}
+
+export function getKontaktPage() {
+  const kontaktPageId = import.meta.env.VITE_SANITY_KONTAKT_PAGE_ID || 'kontakt-page'
+  const query = `*[_type == "kontaktPage" && _id == $kontaktPageId][0]{
+    _id,
+    title,
+    heading,
+    body,
+    introImage{
+      alt,
+      asset->{
+        url
+      }
+    },
+    email,
+    phone,
+    address,
+    openingHours,
+    mapLink,
+    formTitle,
+    formBody
+  }`
+
+  return sanityClient.fetch(query, { kontaktPageId })
 }
 
 export function getCalendarSection() {
@@ -105,7 +162,9 @@ export function getCalendarSection() {
       cardDetails,
       details,
       dateTime,
-      signupLink
+      signupLink,
+      hideSignupButton,
+      fewSpots
     }
   }`
 

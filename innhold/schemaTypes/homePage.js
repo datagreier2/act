@@ -36,6 +36,23 @@ const createCalendarPlaceholderEntries = () =>
     }
   })
 
+const createOmOssPlaceholderPeople = () => [
+  {
+    _key: 'bjorn-placeholder',
+    name: 'Bjørn',
+    bio: 'Kort plassholdertekst om Bjørn. Oppdater med bio i Studio.',
+    email: 'bjorn@placeholder.no',
+    phone: '+47 400 00 001',
+  },
+  {
+    _key: 'grettir-placeholder',
+    name: 'Grettir',
+    bio: 'Kort plassholdertekst om Grettir. Oppdater med bio i Studio.',
+    email: 'grettir@placeholder.no',
+    phone: '+47 400 00 002',
+  },
+]
+
 export const header = defineType({
   name: 'header',
   title: 'Header',
@@ -123,6 +140,7 @@ export const aktueltPage = defineType({
     body: '',
     hide: false,
     hideButton: false,
+    buttonHref: '/aktuelt',
   },
   fields: [
     defineField({
@@ -151,6 +169,193 @@ export const aktueltPage = defineType({
       type: 'boolean',
       initialValue: false,
       description: 'Skjul "Les mer"-knappen.',
+    }),
+    defineField({
+      name: 'buttonHref',
+      title: 'Lenke til knapp',
+      type: 'string',
+      initialValue: '/aktuelt',
+      description: 'Bruk intern sti som /aktuelt eller full URL.',
+    }),
+  ],
+})
+
+export const omOssPerson = defineType({
+  name: 'omOssPerson',
+  title: 'Personkort',
+  type: 'object',
+  fields: [
+    defineField({
+      name: 'name',
+      title: 'Navn',
+      type: 'string',
+    }),
+    defineField({
+      name: 'bio',
+      title: 'Kort tekst',
+      type: 'text',
+      rows: 4,
+    }),
+    defineField({
+      name: 'email',
+      title: 'E-post',
+      type: 'string',
+    }),
+    defineField({
+      name: 'phone',
+      title: 'Telefon',
+      type: 'string',
+    }),
+    defineField({
+      name: 'image',
+      title: 'Bilde',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt-tekst',
+          type: 'string',
+        }),
+      ],
+    }),
+  ],
+})
+
+export const omOssPage = defineType({
+  name: 'omOssPage',
+  title: 'Om oss',
+  type: 'document',
+  initialValue: {
+    title: 'Om oss',
+    heading: 'Om oss',
+    body: 'Kort plassholdertekst om ACT. Oppdater teksten i Studio.',
+    people: createOmOssPlaceholderPeople(),
+  },
+  fields: [
+    defineField({
+      name: 'title',
+      title: 'Intern tittel',
+      type: 'string',
+      description: 'Kun brukt i Studio.',
+    }),
+    defineField({
+      name: 'heading',
+      title: 'Overskrift (H1)',
+      type: 'string',
+    }),
+    defineField({
+      name: 'body',
+      title: 'Ingress',
+      type: 'text',
+      rows: 3,
+    }),
+    defineField({
+      name: 'introImage',
+      title: 'Toppbilde',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt-tekst',
+          type: 'string',
+        }),
+      ],
+    }),
+    defineField({
+      name: 'people',
+      title: 'Personkort',
+      type: 'array',
+      of: [{ type: 'omOssPerson' }],
+      options: {
+        sortable: true,
+      },
+    }),
+  ],
+})
+
+export const kontaktPage = defineType({
+  name: 'kontaktPage',
+  title: 'Kontakt',
+  type: 'document',
+  initialValue: {
+    title: 'Kontakt',
+    heading: 'Kontakt',
+    body: 'Ta kontakt med oss for workshops, privattimer eller samarbeid.',
+    email: 'hei@actstudio.no',
+    phone: '+47 400 00 000',
+    address: 'Eksempelgata 1, 0000 Oslo',
+    openingHours: 'Man-fre 09:00-16:00',
+    formTitle: 'Send melding',
+    formBody: 'Bruk skjemaet under, så tar vi kontakt.',
+  },
+  fields: [
+    defineField({
+      name: 'title',
+      title: 'Intern tittel',
+      type: 'string',
+      description: 'Kun brukt i Studio.',
+    }),
+    defineField({
+      name: 'heading',
+      title: 'Overskrift (H1)',
+      type: 'string',
+    }),
+    defineField({
+      name: 'body',
+      title: 'Ingress',
+      type: 'text',
+      rows: 3,
+    }),
+    defineField({
+      name: 'introImage',
+      title: 'Toppbilde',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt-tekst',
+          type: 'string',
+        }),
+      ],
+    }),
+    defineField({
+      name: 'email',
+      title: 'E-post',
+      type: 'string',
+    }),
+    defineField({
+      name: 'phone',
+      title: 'Telefon',
+      type: 'string',
+    }),
+    defineField({
+      name: 'address',
+      title: 'Adresse',
+      type: 'string',
+    }),
+    defineField({
+      name: 'openingHours',
+      title: 'Åpningstider',
+      type: 'string',
+    }),
+    defineField({
+      name: 'mapLink',
+      title: 'Kartlenke',
+      type: 'url',
+    }),
+    defineField({
+      name: 'formTitle',
+      title: 'Skjema-tittel',
+      type: 'string',
+    }),
+    defineField({
+      name: 'formBody',
+      title: 'Skjema-tekst',
+      type: 'text',
+      rows: 3,
     }),
   ],
 })
@@ -226,6 +431,18 @@ export const calendarEntry = defineType({
       name: 'signupLink',
       title: 'Lenke til skjema',
       type: 'url',
+    }),
+    defineField({
+      name: 'hideSignupButton',
+      title: 'Skjul meld interesse-knapp',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'fewSpots',
+      title: 'Få plasser',
+      type: 'boolean',
+      initialValue: false,
     }),
   ],
 })
