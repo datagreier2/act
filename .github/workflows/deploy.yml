@@ -18,16 +18,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Production Branch
-        uses: actions/checkout@v4
-        with:
-          ref: main
-          path: main-site
-      - name: Checkout Preview Branch
+      - name: Checkout Public Branch
         uses: actions/checkout@v4
         with:
           ref: stage
           path: stage-site
+      - name: Checkout Preview Branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main-site
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -36,13 +36,13 @@ jobs:
           cache-dependency-path: |
             main-site/package-lock.json
             stage-site/package-lock.json
-      - name: Install + Build Production (main)
-        working-directory: main-site
+      - name: Install + Build Public (stage)
+        working-directory: stage-site
         run: |
           npm ci
           npm run build
-      - name: Install + Build Preview (stage)
-        working-directory: stage-site
+      - name: Install + Build Preview (main)
+        working-directory: main-site
         run: |
           npm ci
           npm run build
@@ -50,8 +50,8 @@ jobs:
         run: |
           rm -rf out
           mkdir -p out/preview
-          rsync -a main-site/dist/ out/
-          rsync -a stage-site/dist/ out/preview/
+          rsync -a stage-site/dist/ out/
+          rsync -a main-site/dist/ out/preview/
       - name: Configure Pages
         uses: actions/configure-pages@v4
       - name: Upload Artifact
