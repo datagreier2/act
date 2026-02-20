@@ -26,12 +26,42 @@
 
 .landing-card h1 {
   margin: 0;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
   letter-spacing: 0.01em;
 }
 
 .landing-card p {
   margin-top: 12px;
   color: #4d3740;
-  font-size: 1.1rem;
+  font-size: 1rem;
+}
+
+@media (max-width: 640px) {
+  .landing-card {
+    padding: 34px 20px;
+  }
+
+  .landing-logo {
+    width: min(180px, 62%);
+    margin-bottom: 16px;
+  }
+
+  .landing-card h1 {
+    font-size: 1.55rem;
+  }
+
+  .landing-card p {
+    margin-top: 10px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .landing-card h1 {
+    font-size: 1.4rem;
+  }
+
+  .landing-card p {
+    font-size: 0.9rem;
+  }
 }
