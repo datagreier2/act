@@ -60,14 +60,9 @@ export function getHomePage() {
       _type,
       title,
       body,
+      hide,
       email,
-      phone,
-      events[]->{
-        _id,
-        title,
-        details,
-        dateTime
-      }
+      phone
     },
     footer{
       title,
@@ -76,4 +71,43 @@ export function getHomePage() {
   }`;
 
   return sanityClient.fetch(query, { homePageId });
+}
+
+export function getAktueltPage() {
+  const aktueltPageId = import.meta.env.VITE_SANITY_AKTUELT_PAGE_ID || 'aktuelt-page'
+  const query = `*[_type == "aktueltPage" && _id == $aktueltPageId][0]{
+    _id,
+    title,
+    body,
+    hide,
+    hideButton
+  }`
+
+  return sanityClient.fetch(query, { aktueltPageId })
+}
+
+export function getCalendarSection() {
+  const calendarSectionId =
+    import.meta.env.VITE_SANITY_CALENDAR_SECTION_ID || 'calendar-section'
+  const query = `*[_type == "calendarSection" && _id == $calendarSectionId][0]{
+    _id,
+    title,
+    body,
+    entries[]{
+      _key,
+      title,
+      cardImage{
+        alt,
+        asset->{
+          url
+        }
+      },
+      cardDetails,
+      details,
+      dateTime,
+      signupLink
+    }
+  }`
+
+  return sanityClient.fetch(query, { calendarSectionId })
 }

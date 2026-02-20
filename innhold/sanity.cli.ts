@@ -6,6 +6,7 @@ export default defineCliConfig({
     dataset: process.env.SANITY_STUDIO_DATASET || 'innhold',
   },
   deployment: {
+    appId: 'p4376wyafx193uq1r1baprua',
     autoUpdates: true,
   },
 })

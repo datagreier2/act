@@ -1,9 +1,10 @@
 import {
-  event,
+  aktueltPage,
+  calendarEntry,
+  calendarSection,
   footer,
   header,
   homePage,
-  sectionAktuelt,
   sectionAnnet,
   sectionKalender,
   sectionKjope,
@@ -13,13 +14,14 @@ import {
 
 export const schemaTypes = [
   homePage,
+  aktueltPage,
+  calendarSection,
   header,
   footer,
-  sectionAktuelt,
   sectionKalender,
   sectionAnnet,
   sectionKjope,
   sectionKontakt,
   sectionOmOss,
-  event,
+  calendarEntry,
 ]

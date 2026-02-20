@@ -1,19 +1,53 @@
-# React + Vite
+# Act Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Public site for Act, built with React + Vite, with content loaded from Sanity.
 
-Currently, two official plugins are available:
+## Requirements
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Node.js 20+
+- npm
 
-## React Compiler
+## Frontend: local setup
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm ci
+cp .env.example .env
+npm run dev
+```
 
-## Expanding the ESLint configuration
+## Frontend: production build
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm run build
+npm run preview
+```
 
+## Environment variables
 
-FP
+Defaults are in `.env.example`:
+
+- `VITE_SANITY_PROJECT_ID`
+- `VITE_SANITY_DATASET`
+- `VITE_SANITY_API_VERSION`
+- `VITE_SANITY_HOME_PAGE_ID`
+
+## Sanity Studio (`innhold/`)
+
+```bash
+cd innhold
+npm ci
+npm run dev
+```
+
+Deploy Studio:
+
+```bash
+cd innhold
+npm run deploy
+```
+
+## Deployment (GitHub Pages)
+
+- Push to `main` triggers `.github/workflows/deploy.yml`
+- Frontend output is deployed from `dist/`
+- Vite uses `base: "./"` so asset paths work for both repo pages and custom-domain root hosting
